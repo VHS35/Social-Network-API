@@ -1,29 +1,16 @@
 const express = require('express');
-const mongodb = require('mongodb').MongoClient;
+const routes = require('./routes')
+const db = require('./config/connection');
 
+const PORT = process.env.PORT || 3001;
 const app = express();
-const port = 3001;
-const connectionStringURI = `mongodb://127.0.0.1:27017/socialDB`;
 
-let db;
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(routes);
 
-mongodb.connect(
-  connectionStringURI,
-  { useNewUrlParser: true, useUnifiedTopology: true },
-  (err, client) => {
-    db = client.db();
-    // Drops any documents, if they exist
-    db.collection('socialList').deleteMany({});
-    // Adds data to database
-    db.collection('socialList').insertMany(data, (err, res) => {
-      if (err) {
-        return console.log(err);
-      }
-      console.log(res);
-    });
-
-    app.listen(port, () => {
-      console.log(`Example app listening at http://localhost:${port}`);
-    });
-  }
-);
+db.once('open', () => {
+  app.listen(PORT, () => {
+    console.log(`API server is running on port ${PORT}!`);
+  });
+});
