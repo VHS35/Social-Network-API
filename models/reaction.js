@@ -1,4 +1,5 @@
 //schema only 
+//working on correcting the reaction portion as it is not working correctly
 const { Schema, Types } = require('mongoose');
 
 const reactionSchema = new Schema (
