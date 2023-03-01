@@ -1,7 +1,7 @@
 //schema only
 const { Schema, model } = require('mongoose');
 
-const reactionSchema = new Schema (
+const Reaction = new Schema (
     {
         //use Mongooses ObjectId data type
         reactionId:{
@@ -32,5 +32,4 @@ const reactionSchema = new Schema (
         id: false,
     }
 );
-
-module.exports = reactionSchema
+module.exports = Reaction;
