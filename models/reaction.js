@@ -1,7 +1,7 @@
-//schema only
-const { Schema, model } = require('mongoose');
+//schema only 
+const { Schema, Types } = require('mongoose');
 
-const Reaction = new Schema (
+const reactionSchema = new Schema (
     {
         //use Mongooses ObjectId data type
         reactionId:{
@@ -32,4 +32,4 @@ const Reaction = new Schema (
         id: false,
     }
 );
-module.exports = Reaction;
+module.exports = reactionSchema;
